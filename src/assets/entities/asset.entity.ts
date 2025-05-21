@@ -10,17 +10,17 @@ export class Asset {
   @Prop({ default: () => crypto.randomUUID() })
   _id: string;
 
-  @Prop()
+  @Prop({ unique: true, index: true })
   name: string;
 
-  @Prop()
+  @Prop({ unique: true, index: true })
   symbol: string;
 
   @Prop()
-  image: string;
+  price: number;
 
   @Prop()
-  price: number;
+  image: string;
 
   //Estão aqui, mas não são obrigatórios. Pois o Mongoose adiciona automaticamente esses campos.
   createdAt!: Date; //A exclamação serve apenas para modelagem.
