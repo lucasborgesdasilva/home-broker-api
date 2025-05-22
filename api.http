@@ -1,3 +1,5 @@
+### 
+# @name CreateAsset
 POST http://localhost:3000/assets
 Content-Type: application/json
 
@@ -7,9 +9,34 @@ Content-Type: application/json
   "price": 100,
   "image":"AMZN.png"
 }
-
 ###
+@assetId = {{ CreateAsset.response.body._id }}
+
+### findAll Assets
 GET http://localhost:3000/assets/
 
-###
+### findOne Asset
 GET http://localhost:3000/assets/A1
+
+#_________________________________Wallet_____________________________________#
+
+### 
+# @name createWallet
+POST http://localhost:3000/wallets
+###
+@walletId = {{ createWallet.response.body._id }}
+
+### findAll Wallets
+GET http://localhost:3000/wallets
+
+### findOne Wallet
+GET http://localhost:3000/wallets/{{ walletId }}
+
+###
+POST http://localhost:3000/wallets/{{ walletId }}/assets
+Content-Type: application/json
+
+{
+  "shares": 2,
+  "assetId": "{{ assetId }}"
+}
